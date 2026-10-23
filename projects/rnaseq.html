@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>RNA-Seq Base - Giuseppe Martone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../index.html" class="logo"><img src="../images/profile.jpg" style="width: 80px; height: 80px; border-radius: 50%;" alt="Giuseppe Martone"></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Classic RNA-Seq Workflow</h1>
+										<p><strong>Status:</strong> ✅ Complete / Fundamental Base | <strong>Tech Stack:</strong> Nextflow, Bash Scripting, R/Python</p>
+									</header>
+
+									
+
+									<h2>Problem Solved / Scientific Goal</h2>
+									<p>The goal is to establish and reproduce the standard RNA-Seq workflow. This project serves as a <strong>methodological foundation</strong> on which more complex architectures, like Digital RNA-Seq, have been built.</p>
+									<p>The challenge here is ensuring that every step (QC → Alignment → Quantification) is executable in a robust and reproducible manner. It's about establishing the *protocol* for transcriptomic data.</p>
+
+									<hr class="major" />
+
+									<h2>Architecture Implemented</h2>
+									<p>The architecture is a linear, modular, and essential workflow:</p>
+									<ol>
+										<li><strong>QC & Preprocessing:</strong> Initial quality control on FASTQ files.</li>
+										<li><strong>Alignment and Quantification:</strong> Use of canonical tools (e.g., STAR/Salmon) to align data and count (feature count matrix).</li>
+										<li><strong>Statistical Analysis:</strong> After obtaining the count matrix, we proceed to the true bioinformatics phase in R/Python for differential gene expression (DEG) analysis.</li>
+									</ol>
+									<p>The use of Nextflow ensures this linear flow is executed robustly, managing dependencies between steps.</p>
+
+									<hr class="major" />
+
+									<h2>Results & Takeaways</h2>
+									<ol>
+										<li><strong>Fundamental Principle:</strong> The RNA-Seq pipeline is the *benchmark* for every transcriptomic analysis. Understanding this flow allows you to diagnose more complex problems, knowing exactly which step might have failed.</li>
+										<li><strong>Core Modularization:</strong> Each single step (QC, Alignment, Quantification) must live in a separate and well-tested module to allow future *upgrades* without breaking the rest of the chain.</li>
+									</ol>
+
+									<hr class="major" />
+
+									<h2>Tech Stack & Tools Used</h2>
+									<ul class="skills">
+										<li>Nextflow Workflow Management</li>
+										<li>Docker Containerization</li>
+										<td>STAR/Salmon (Alignment)</li>
+										<td>R/Python (Statistical Analysis)</li>
+										<td>Bash Scripting</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>GitHub Repository</h2>
+									<p>Check out the code: <a href="#">rnaseq on GitHub</a></p>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../index.html">Homepage</a></li>
+										<li><a href="../about.html">Generic</a></li>
+										<li><a href="#footer">Elements</a></li>
+										<li>
+											<span class="dropotron">Projects</span>
+											<ul>
+												<li><a href="digitalrnaseq.html">Digital RNA-Seq</a></li>
+												<li><a href="rnaseq.html">RNA-Seq Base</a></li>
+												<li><a href="rnn_neochord.html">ML - RNN Neochord</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="dropotron">Tools</span>
+											<ul>
+												<li><a href="fastqcat.html">FastQCat</a></li>
+												<li><a href="downsampling.html">Downsampling</a></li>
+											</ul>
+										</li>
+										<li><a href="../skills/index.html"">Skills</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Giuseppe Martone. All rights reserved.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

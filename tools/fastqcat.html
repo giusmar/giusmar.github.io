@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>FastQCat - Giuseppe Martone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../index.html" class="logo"><img src="../images/profile.jpg" style="width: 80px; height: 80px; border-radius: 50%;" alt="Giuseppe Martone"></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>FastQCat Utility</h1>
+										<p><strong>Status:</strong> ✅ Fundamental & Standardized | <strong>Tech Stack:</strong> Nextflow, Bash Scripting</p>
+									</header>
+
+									
+
+									<h2>Problem Solved / Scientific Goal</h2>
+									<p>The main objective is to solve the problem of data fragmentation in very large datasets that have been collected from different sources, each saved as a separate file. Analysis requires the <strong>union of multiple FASTQ files into a single continuous and coherent stream</strong> before QC or alignment.</p>
+									<p>The challenge here is <em>scalable resource management</em> and ensuring the process is *repeatable* on any input set without rewriting the script for every file combination.</p>
+
+									<hr class="major" />
+
+									<h2>Architecture Implemented</h2>
+									<p>The architecture is based on conceptualizing the flow as a single step of <strong>Data Aggregation</strong>:</p>
+									<ol>
+										<li><strong>Input:</strong> Accept a directory or list of FASTQ files to process together.</li>
+										<li><strong>Orchestration:</strong> Use Nextflow to manage the call to the concatenation command (<code>cat</code>). This ensures that, even if the number of files is dynamic, the system is stable and predictable.</li>
+										<li><strong>Validation:</strong> The workflow must include a validation step (e.g., <code>FastQC</code>) on the *aggregated* file, confirming that the union of data has produced a valid input for the downstream analysis phase.</li>
+									</ol>
+
+									<hr class="major" />
+
+									<h2>Results & Takeaways</h2>
+									<ol>
+										<li><strong>The First Step is Fundamental:</strong> This demonstrates that even simple steps like concatenation are <em>critical</em>. An error here compromises the entire downstream analysis.</li>
+										<li><strong>Modularity Principle:</strong> The ability to encapsulate a simple operation (concatenate N files) into a Nextflow module is the basis for building enormous and robust workflows.</li>
+									</ol>
+
+									<hr class="major" />
+
+									<h2>Tech Stack & Tools Used</h2>
+									<ul class="skills">
+										<li>Nextflow Workflow Management</li>
+										<td>Bash Scripting</li>
+										<td>FastQC (Validation)</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>GitHub Repository</h2>
+									<p>Check out the code: <a href="#">fastqcat on GitHub</a></p>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../index.html">Homepage</a></li>
+										<li><a href="../about.html">Generic</a></li>
+										<li><a href="#footer">Elements</a></li>
+										<li>
+											<span class="dropotron">Projects</span>
+											<ul>
+												<li><a href="digitalrnaseq.html">Digital RNA-Seq</a></li>
+												<li><a href="rnaseq.html">RNA-Seq Base</a></li>
+												<li><a href="rnn_neochord.html">ML - RNN Neochord</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="dropotron">Tools</span>
+											<ul>
+												<li><a href="fastqcat.html">FastQCat</a></li>
+												<li><a href="downsampling.html">Downsampling</a></li>
+											</ul>
+										</li>
+										<li><a href="../skills/index.html"">Skills</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Giuseppe Martone. All rights reserved.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

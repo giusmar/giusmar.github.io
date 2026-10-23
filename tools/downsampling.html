@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Downsampling - Giuseppe Martone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../index.html" class="logo"><img src="../images/profile.jpg" style="width: 80px; height: 80px; border-radius: 50%;" alt="Giuseppe Martone"></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Downsampling Workflow</h1>
+										<p><strong>Status:</strong> ✅ Implemented & Fundamental | <strong>Tech Stack:</strong> Nextflow, Bash Scripting</p>
+									</header>
+
+									
+
+									<h2>Problem Solved / Scientific Goal</h2>
+									<p>The objective is to solve the heterogeneity of NGS datasets. Raw data (FASTQ) can vary enormously in terms of sequencing depth, read length, or average quality between different samples, making it impossible to compare them directly with statistically significant analysis.</p>
+									<p>The solution is <strong>standardization</strong>: downsample all input FASTQ to a common target depth, ensuring every comparison is *fair* and statistically valid.</p>
+
+									<hr class="major" />
+
+									<h2>Architecture Implemented</h2>
+									<p>The architecture leverages Nextflow to orchestrate the downsampling process. The workflow must:</p>
+									<ol>
+										<li><strong>Input:</strong> Accept a list of raw FASTQ files.</li>
+										<li><strong>Preliminary Quality Check:</strong> Perform a preliminary check on the average read length (crucial for deciding the target depth).</li>
+										<li><strong>Downsampling:</strong> Use tools like <code>fastp</code> or scripts based on Samtools/BWA to sample sequences, creating FASTQ files that all have the same number of reads and standardized quality.</li>
+									</ol>
+
+									<hr class="major" />
+
+									<h2>Results & Takeaways</h2>
+									<ol>
+										<li><strong>Data Quality:</strong> I learned that analysis doesn't start with statistics, but with <em>data preprocessing</em>. The first critical step is always standardizing input variables to avoid methodological biases.</li>
+										<li><strong>Pre-Analysis Best Practices:</strong> Creating this utility transforms a manual and high-risk-of-error step into an automated phase of the workflow.</li>
+									</ol>
+
+									<hr class="major" />
+
+									<h2>Tech Stack & Tools Used</h2>
+									<ul class="skills">
+										<li>Nextflow Workflow Management</li>
+										<td>Bash Scripting</li>
+										<td>fastp (Downsampling)</li>
+										<td>Samtools/BWA (Implicit)</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>GitHub Repository</h2>
+									<p>Check out the code: <a href="#">downsampling on GitHub</a></p>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../index.html">Homepage</a></li>
+										<li><a href="../about.html">Generic</a></li>
+										<li><a href="#footer">Elements</a></li>
+										<li>
+											<span class="dropotron">Projects</span>
+											<ul>
+												<li><a href="digitalrnaseq.html">Digital RNA-Seq</a></li>
+												<li><a href="rnaseq.html">RNA-Seq Base</a></li>
+												<li><a href="rnn_neochord.html">ML - RNN Neochord</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="dropotron">Tools</span>
+											<ul>
+												<li><a href="fastqcat.html">FastQCat</a></li>
+												<li><a href="downsampling.html">Downsampling</a></li>
+											</ul>
+										</li>
+										<li><a href="../skills/index.html"">Skills</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Giuseppe Martone. All rights reserved.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
