@@ -37,3 +37,44 @@
 			}
 		}
 	}
+
+	.consulting-services {
+		margin: 0 0 _size(element-margin) 0;
+
+		article {
+			border-bottom: solid 1px _palette(border);
+			margin: 0;
+			padding: 1.5em 0;
+
+			&:first-child {
+				padding-top: 0;
+			}
+
+			&:last-child {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			header {
+				@include vendor('display', 'flex');
+				@include vendor('align-items', 'center');
+				gap: 0.75em;
+				margin: 0 0 0.75em;
+
+				.icon {
+					color: _palette(accent);
+					@include vendor('flex', '0 0 1.5em');
+					font-size: 1.25em;
+					text-align: center;
+				}
+
+				h3 {
+					margin: 0;
+				}
+			}
+
+			> p {
+				margin: 0;
+			}
+		}
+	}

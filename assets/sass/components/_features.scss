@@ -77,6 +77,12 @@
 			}
 		}
 
+		&.project-grid {
+			article {
+				@include vendor('align-items', 'flex-start');
+			}
+		}
+
 		@include breakpoint('<=medium') {
 			margin: 0 0 _size(element-margin) 0;
 			width: 100%;

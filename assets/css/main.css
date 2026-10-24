@@ -1673,6 +1673,11 @@ button,
       width: 100%; }
       .features article .content > :last-child {
         margin-bottom: 0; }
+  .features.project-grid article {
+      -moz-align-items: flex-start;
+      -webkit-align-items: flex-start;
+      -ms-align-items: flex-start;
+      align-items: flex-start; }
   @media screen and (max-width: 980px) {
     .features {
       margin: 0 0 2em 0;
@@ -1722,6 +1727,42 @@ button,
   @media screen and (max-width: 480px) {
     .features article .icon:before {
       font-size: 1.25rem; } }
+
+/* Consulting Services */
+.consulting-services {
+  margin: 0 0 2em 0; }
+  .consulting-services article {
+    border-bottom: solid 1px rgba(210, 215, 217, 0.75);
+    margin: 0;
+    padding: 1.5em 0; }
+    .consulting-services article:first-child {
+      padding-top: 0; }
+    .consulting-services article:last-child {
+      border-bottom: 0;
+      padding-bottom: 0; }
+    .consulting-services article header {
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      -moz-align-items: center;
+      -webkit-align-items: center;
+      -ms-align-items: center;
+      align-items: center;
+      gap: 0.75em;
+      margin: 0 0 0.75em; }
+      .consulting-services article header .icon {
+        color: #f56a6a;
+        -moz-flex: 0 0 1.5em;
+        -webkit-flex: 0 0 1.5em;
+        -ms-flex: 0 0 1.5em;
+        flex: 0 0 1.5em;
+        font-size: 1.25em;
+        text-align: center; }
+      .consulting-services article header h3 {
+        margin: 0; }
+    .consulting-services article > p {
+      margin: 0; }
 
 /* Posts */
 .posts {
@@ -2126,6 +2167,30 @@ button,
     -ms-flex-shrink: 1;
     flex-shrink: 1;
     width: 50%; }
+  #banner.profile-banner .content {
+    width: 100%; }
+  #banner .profile-intro {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    gap: 2.5em; }
+    #banner .profile-intro .profile-photo {
+      border-radius: 50%;
+      -moz-flex: 0 0 14em;
+      -webkit-flex: 0 0 14em;
+      -ms-flex: 0 0 14em;
+      flex: 0 0 14em;
+      height: 14em;
+      -moz-object-fit: cover;
+      -webkit-object-fit: cover;
+      -ms-object-fit: cover;
+      object-fit: cover;
+      width: 14em; }
   #banner .image {
     -moz-flex-grow: 0;
     -webkit-flex-grow: 0;
@@ -2184,6 +2249,24 @@ button,
   @media screen and (orientation: portrait) and (max-width: 480px) {
     #banner .image {
       max-height: 35vh; } }
+  @media screen and (max-width: 736px) {
+    #banner .profile-intro {
+      -moz-align-items: flex-start;
+      -webkit-align-items: flex-start;
+      -ms-align-items: flex-start;
+      align-items: flex-start;
+      -moz-flex-direction: column;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      gap: 1.5em; }
+      #banner .profile-intro .profile-photo {
+        -moz-flex-basis: 10em;
+        -webkit-flex-basis: 10em;
+        -ms-flex-basis: 10em;
+        flex-basis: 10em;
+        height: 10em;
+        width: 10em; } }
 
 /* Footer */
 #footer .copyright {

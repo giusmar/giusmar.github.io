@@ -20,78 +20,57 @@
 					<div id="main">
 						<div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo"><img src="images/profile.jpg" style="width: 80px; height: 80px; border-radius: 50%;" alt="Giuseppe Martone"></a>
-								</header>
-
 							<!-- Banner -->
-								<section id="banner">
+								<section id="banner" class="profile-banner">
 									<div class="content">
-										<header>
-											<h1>Bioinformatic &<br />
-											NGS Data Consultant</h1>
-											<p>Trascrittoma • Pipeline Scalabili • Cloud Computing • Machine Learning</p>
-										</header>
+										<div class="profile-intro">
+											<img class="profile-photo" src="images/profile.jpg" alt="Giuseppe Martone">
+											<header>
+												<h1>Bioinformatic &<br />
+												NGS Data Consultant</h1>
+												<p>Trascrittoma • Pipeline Scalabili • Cloud Computing • Machine Learning</p>
+											</header>
+										</div>
 									</div>
 								</section>
 
 							<!-- Section -->
 								<section>
 									<header class="major">
-										<h2>Projects</h2>
+										<h2>Ti racconto come lavoro e come posso aiutarti</h2>
 									</header>
-									<div class="features">
+									<p>Ogni progetto parte da una domanda biologica. Lavoro per trasformare dati complessi in analisi riproducibili e risultati chiari, scegliendo strumenti e approfondimenti in base a ciò che serve davvero capire.</p>
+									<div class="features project-grid">
 										<article>
 											<span class="icon solid fa-dna"></span>
 											<div class="content">
-												<h3>Digital RNA-Seq</h3>
-												<p>End-to-end bioinformatics pipeline for large-scale Digital RNA-Seq analysis with Nextflow and Docker.</p>
+												<h3>Parto dalla domanda biologica</h3>
+												<p>Analizzo il trascrittoma con approcci 3′ mRNA-Seq, total RNA, full-length RNA e miRNA, costruendo analisi e report su misura per far emergere gli insight più utili.</p>
 											</div>
 										</article>
 										<article>
-											<span class="icon solid fa-vial"></span>
+											<span class="icon solid fa-cloud"></span>
 											<div class="content">
-												<h3>RNA-Seq Workflow</h3>
-												<p>Standard RNA-Seq analysis pipeline with QC, alignment, quantification and DEG analysis.</p>
+												<h3>Rendo le analisi riproducibili</h3>
+												<p>Progetto pipeline scalabili e ambienti di lavoro cloud, integrando dati, infrastruttura e strumenti di workflow per accompagnare l'analisi dall'avvio ai risultati.</p>
 											</div>
 										</article>
 										<article>
 											<span class="icon solid fa-brain"></span>
 											<div class="content">
-												<h3>ML - RNN Neochord</h3>
-												<p>LSTM time series prediction model for clinical data analysis in healthcare context.</p>
+												<h3>Esploro dati complessi</h3>
+												<p>Affronto anche dati clinici e omici con analisi personalizzate e modelli di machine learning, mantenendo al centro l'interpretazione del problema.</p>
 											</div>
 										</article>
 										<article>
 											<span class="icon solid fa-tasks"></span>
 											<div class="content">
-												<h3>Preprocessing Tools</h3>
-												<p>FastQCat utility for efficient multi-dataset aggregation and Downsampling workflow for standardized input.</p>
+												<h3>Valorizzo e controllo i dati</h3>
+												<p>Dal preprocessing al controllo qualità, preparo i dati per analisi affidabili. Per quesiti specifici posso includere anche la classificazione tassonomica con Kraken2, utile a indagare contaminazioni e composizione microbica.</p>
 											</div>
 										</article>
 									</div>
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Tech Stack</h2>
-									</header>
-									<div class="posts">
-										<article>
-											<h3>Bioinformatics</h3>
-											<p>Nextflow, Docker/Singularity, AWS/GCP, FastQC, STAR, Salmon, Kallisto, GATK</p>
-										</article>
-										<article>
-											<h3>Data Science & ML</h3>
-											<p>R, Python, LSTM/Deep Learning, Time Series Analysis, Cross-Validation</p>
-										</article>
-										<article>
-											<h3>Infrastructure</h3>
-											<p>Bash Scripting, HPC (SLURM), GPU Acceleration, Parabricks, STOMICS, Nanopore</p>
-										</article>
-									</div>
+									<p>Vuoi approfondire? Nel menu trovi i <strong>Projects</strong>, con esempi e workflow, i <strong>Tools</strong>, con utility per l'analisi, e le <strong>Skills</strong>, per una panoramica delle competenze. Per il percorso completo, consulta il <a href="curriculumvitae.html">Curriculum Vitae</a>.</p>
 								</section>
 
 						</div>
@@ -108,20 +87,21 @@
 									</header>
 									<ul>
 										<li><a href="index.html">Homepage</a></li>
-										<li><a href="about.html">About</a></li>
+										<li><a href="curriculumvitae.html">Curriculum Vitae</a></li>
 										<li>
-											<span class="dropotron">
+											<span class="opener">Projects</span>
 											<ul>
-												<li><a href="projects/digitalrnaseq.html">Digital RNA-Seq</a></li>
-												<li><a href="projects/rnaseq.html">RNA-Seq Base</a></li>
-												<li><a href="projects/rnn_neochord.html">ML - RNN Neochord</a></li>
+												<li><a href="projects/index.html#rna">RNA</a></li>
+												<li><a href="projects/index.html#dna">DNA</a></li>
+												<li><a href="projects/index.html#single-cell">Single-cell</a></li>
+												<li><a href="projects/index.html#rstudio">RStudio</a></li>
 											</ul>
 										</li>
 										<li>
-											<span class="dropotron">
+											<span class="opener">Tools</span>
 											<ul>
-												<li><a href="tools/fastqcat.html">FastQCat</a></li>
-												<li><a href="tools/downsampling.html">Downsampling</a></li>
+												<li><a href="tools/index.html#data-preparation">Preparazione dei dati</a></li>
+												<li><a href="tools/index.html#results-analysis">Analisi dei risultati</a></li>
 											</ul>
 										</li>
 										<li><a href="skills/index.html">Skills</a></li>
@@ -130,11 +110,13 @@
 
 							<!-- Footer -->
 								<footer id="footer">
+									<h3>Contatti</h3>
 									<ul class="icons">
-										<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-										<li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-										<li><a href="mailto:info@example.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+										<li><a href="mailto:giuseppemartone@ik.me" class="icon solid fa-envelope" aria-label="Invia un'email" title="Email"><span class="label">Email</span></a></li>
+										<li><a href="tel:+393289231570" class="icon solid fa-phone" aria-label="Chiama" title="Telefono"><span class="label">Telefono</span></a></li>
+										<li><a href="https://www.linkedin.com/in/giuseppe-martone34" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Profilo LinkedIn" title="LinkedIn"><span class="label">LinkedIn</span></a></li>
 									</ul>
+									<p>Italy, Campania</p>
 									<p class="copyright">&copy; Giuseppe Martone. All rights reserved.</p>
 								</footer>
 
