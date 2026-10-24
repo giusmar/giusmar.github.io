@@ -6,7 +6,7 @@
 -->
 <html lang="en">
 	<head>
-		<title>RNA-Seq Base - Giuseppe Martone</title>
+		<title>RNA-Seq Workflow - Giuseppe Martone</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
@@ -23,44 +23,113 @@
 							<!-- Content -->
 								<section>
 									<header class="main">
-										<h1>Classic RNA-Seq Workflow</h1>
-										<p><strong>Status:</strong> ✅ Complete / Fundamental Base | <strong>Tech Stack:</strong> Nextflow, Bash Scripting, R/Python</p>
+										<h1>RNA-Seq: From FASTQ to BAM and Count Tables</h1>
+										<p>A modular Nextflow workflow for preprocessing, reference alignment and gene-, exon- and transcript-level quantification.</p>
 									</header>
 
 									
 
-									<h2>Problem Solved / Scientific Goal</h2>
-									<p>The goal is to establish and reproduce the standard RNA-Seq workflow. This project serves as a <strong>methodological foundation</strong> on which more complex architectures, like Digital RNA-Seq, have been built.</p>
-									<p>The challenge here is ensuring that every step (QC → Alignment → Quantification) is executable in a robust and reproducible manner. It's about establishing the *protocol* for transcriptomic data.</p>
+									<h2>Purpose</h2>
+									<p>This pipeline takes RNA-Seq FASTQ files and a reference genome through preprocessing and STAR alignment, producing alignment files (BAM) and count tables. It packages the core steps in a modular Nextflow workflow, with configurable genome, tool and execution settings.</p>
+									<p>The workflow ends at count generation. Differential expression and pathway enrichment are downstream analyses and are not produced by the main pipeline.</p>
 
 									<hr class="major" />
 
-									<h2>Architecture Implemented</h2>
-									<p>The architecture is a linear, modular, and essential workflow:</p>
+									<h2>Selected Methodological References</h2>
+									<ul>
+										<li>Dobin A. et al. (2013). <a href="https://doi.org/10.1093/bioinformatics/bts635" target="_blank" rel="noopener noreferrer">STAR: ultrafast universal RNA-seq aligner</a>. <em>Bioinformatics</em>, 29(1), 15–21. Describes the splice-aware aligner used for mapping reads to the reference genome.</li>
+										<li>Liao Y. et al. (2014). <a href="https://doi.org/10.1093/bioinformatics/btt656" target="_blank" rel="noopener noreferrer">featureCounts: an efficient general purpose program for assigning sequence reads to genomic features</a>. <em>Bioinformatics</em>, 30(7), 923–930. Describes read summarisation for genomic features, including genes and exons.</li>
+										<li>Smith T. et al. (2017). <a href="https://doi.org/10.1101/gr.209601.116" target="_blank" rel="noopener noreferrer">UMI-tools: modeling sequencing errors in Unique Molecular Identifiers to improve quantification accuracy</a>. <em>Genome Research</em>, 27(3), 491–499. Describes UMI-aware methods for identifying PCR duplicates; applicability depends on the library design and UMI configuration.</li>
+										<li>Martin M. (2011). <a href="https://doi.org/10.14806/ej.17.1.200" target="_blank" rel="noopener noreferrer">Cutadapt removes adapter sequences from high-throughput sequencing reads</a>. <em>EMBnet.journal</em>, 17(1), 10. Relevant to adapter trimming; the workflow invokes Trim Galore for trimming and FastQC reporting.</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>From FASTQ to Analysis-Ready Outputs</h2>
+									<figure>
+										<svg viewBox="0 0 1000 440" role="img" aria-labelledby="workflow-title workflow-description" style="width: 100%; height: auto;">
+											<title id="workflow-title">RNA-Seq workflow from FASTQ to BAM and count tables</title>
+											<desc id="workflow-description">FASTQ files go through initial FastQC, UMI extraction, and Trim Galore trimming with FastQC reports. STAR aligns reads and samtools sorts and indexes BAM files. UMI-tools deduplicates alignments before featureCounts generates gene, exon and transcript count tables.</desc>
+											<defs>
+												<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+													<path d="M0,0 L10,5 L0,10 z" fill="#f56a6a" />
+												</marker>
+											</defs>
+											<g fill="#ffffff" stroke="#f56a6a" stroke-width="2">
+												<rect x="20" y="35" width="175" height="90" rx="8" />
+												<rect x="215" y="35" width="175" height="90" rx="8" />
+												<rect x="410" y="35" width="175" height="90" rx="8" />
+												<rect x="605" y="35" width="175" height="90" rx="8" />
+												<rect x="800" y="35" width="175" height="90" rx="8" />
+												<rect x="205" y="260" width="270" height="100" rx="8" fill="#fff4f4" />
+												<rect x="525" y="260" width="270" height="100" rx="8" fill="#fff4f4" />
+												<rect x="20" y="260" width="155" height="100" rx="8" fill="#f7f7f7" stroke="#9fa3a6" />
+											</g>
+											<g fill="none" stroke="#f56a6a" stroke-width="2.5" marker-end="url(#arrow)">
+												<path d="M195 80 H203" />
+												<path d="M390 80 H398" />
+												<path d="M585 80 H593" />
+												<path d="M780 80 H788" />
+												<path d="M497 125 V205 H340 V248" />
+												<path d="M887 125 V205 H660 V248" />
+												<path d="M302 125 V205 H97 V248" />
+											</g>
+											<g fill="#3d4449" font-family="Arial, sans-serif" text-anchor="middle">
+												<text x="107" y="72" font-size="17" font-weight="700">FASTQ</text>
+												<text x="107" y="98" font-size="14">sample reads</text>
+												<text x="302" y="72" font-size="17" font-weight="700">QC &amp; Trimming</text>
+												<text x="302" y="98" font-size="14">FastQC and read cleanup</text>
+												<text x="497" y="72" font-size="17" font-weight="700">STAR</text>
+												<text x="497" y="98" font-size="14">reference alignment</text>
+												<text x="692" y="72" font-size="17" font-weight="700">UMI-tools</text>
+												<text x="692" y="98" font-size="14">deduplication</text>
+												<text x="887" y="72" font-size="17" font-weight="700">featureCounts</text>
+												<text x="887" y="98" font-size="14">gene, exon and transcript</text>
+												<text x="97" y="302" font-size="16" font-weight="700">QC Reports</text>
+												<text x="97" y="328" font-size="14">logs and reports</text>
+												<text x="340" y="302" font-size="17" font-weight="700">Aligned BAM Files</text>
+												<text x="340" y="328" font-size="14">STAR alignment output</text>
+												<text x="660" y="302" font-size="17" font-weight="700">Count Tables</text>
+												<text x="660" y="328" font-size="14">per sample and feature level</text>
+											</g>
+										</svg>
+									</figure>
+
+									<hr class="major" />
+
+									<h2>Workflow &amp; Configuration</h2>
 									<ol>
-										<li><strong>QC & Preprocessing:</strong> Initial quality control on FASTQ files.</li>
-										<li><strong>Alignment and Quantification:</strong> Use of canonical tools (e.g., STAR/Salmon) to align data and count (feature count matrix).</li>
-										<li><strong>Statistical Analysis:</strong> After obtaining the count matrix, we proceed to the true bioinformatics phase in R/Python for differential gene expression (DEG) analysis.</li>
+										<li><strong>Inputs:</strong> a samplesheet identifies samples and their FASTQ read file(s); the pipeline also needs a matching reference FASTA, GTF annotation and pre-built STAR index. The code supports paired-end and single-end read processing.</li>
+										<li><strong>Initial quality control:</strong> FastQC reports are generated for the raw reads.</li>
+										<li><strong>UMI extraction and trimming:</strong> UMI-tools extracts barcodes using a configured pattern, then Trim Galore trims reads and generates post-trimming FastQC reports.</li>
+										<li><strong>Alignment:</strong> STAR aligns reads to the reference; samtools sorts and indexes the resulting BAM files and generates alignment statistics.</li>
+										<li><strong>Deduplication and quantification:</strong> UMI-tools deduplicates alignments, then featureCounts assigns reads to gene, exon and transcript features using the GTF annotation.</li>
 									</ol>
-									<p>The use of Nextflow ensures this linear flow is executed robustly, managing dependencies between steps.</p>
+									<p>The project is organised as a modular Nextflow DSL2 workflow. Reference paths, library strandedness, read mode, UMI patterns and process resources are configurable.</p>
+									<p><strong>Input format note:</strong> the checked-in sample sheet example uses an <code>input_path</code> column, while the current entry point reads <code>fastq_path_1</code> and <code>fastq_path_2</code>. Align the sample sheet and parser format before running the workflow.</p>
+									<p><strong>UMI note:</strong> the current preprocessing and processing subworkflows invoke UMI extraction and deduplication. Confirm that the library has UMIs and that its barcode pattern is configured before using this workflow.</p>
 
 									<hr class="major" />
 
-									<h2>Results & Takeaways</h2>
+									<h2>Outputs &amp; Scope</h2>
 									<ol>
-										<li><strong>Fundamental Principle:</strong> The RNA-Seq pipeline is the *benchmark* for every transcriptomic analysis. Understanding this flow allows you to diagnose more complex problems, knowing exactly which step might have failed.</li>
-										<li><strong>Core Modularization:</strong> Each single step (QC, Alignment, Quantification) must live in a separate and well-tested module to allow future *upgrades* without breaking the rest of the chain.</li>
+										<li><strong>Aligned reads:</strong> sorted BAM files and indexes under <code>output/STAR/align/</code>; deduplicated BAM files and logs under <code>output/UMI/DEDUP/</code>.</li>
+										<li><strong>Count tables:</strong> per-sample files named <code>{sample}_counts.gene.tsv</code>, <code>{sample}_counts.exon.tsv</code> and <code>{sample}_counts.transcript.tsv</code>, intended for <code>output/SUBREAD/</code>. With UMI processing, the filenames include <code>umi_dedup</code>.</li>
+										<li><strong>Quality outputs:</strong> raw-read FastQC reports under <code>output/FASTQC/</code>, trimmed FASTQ files and post-trimming reports under <code>output/TRIMGALORE/</code>, plus process logs and alignment statistics.</li>
 									</ol>
+									<p><strong>Publication check:</strong> the featureCounts module declares gene-, exon- and transcript-level tables, but its current publication rules appear to copy exon files and summary files only. Verify the published outputs before relying on all three tables being present in the final output directory.</p>
+									<p>Count tables are per-sample outputs, not an aggregated count matrix. They can be combined for downstream differential expression analysis (for example, with DESeq2 or edgeR), but differential expression and pathway enrichment are outside this workflow's outputs. Transcript-level counts do not constitute transcript reconstruction, isoform analysis or splicing analysis.</p>
 
 									<hr class="major" />
 
-									<h2>Tech Stack & Tools Used</h2>
+									<h2>Technologies</h2>
 									<ul class="skills">
-										<li>Nextflow Workflow Management</li>
-										<li>Docker Containerization</li>
-										<li>STAR/Salmon (Alignment)</li>
-										<li>R/Python (Statistical Analysis)</li>
-										<li>Bash Scripting</li>
+										<li>Nextflow DSL2 (version 23.04.0 or later)</li>
+										<li>FastQC and Trim Galore</li>
+										<li>STAR and samtools</li>
+										<li>UMI-tools</li>
+										<li>Subread featureCounts</li>
+										<li>Docker or Singularity</li>
 									</ul>
 
 									<hr class="major" />
