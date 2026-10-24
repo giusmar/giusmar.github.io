@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Digital RNA-Seq - Giuseppe Martone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>3′ mRNA-Seq (Digital RNA-Seq)</h1>
+										<p>Profilazione dell'espressione genica tramite sequenziamento mirato alle estremità 3′ dei trascritti.</p>
+									</header>
+
+									<h2>A cosa serve</h2>
+									<p>Un approccio di RNA-seq che concentra le letture sulle estremità 3′ dei trascritti poliadenilati, generalmente in corrispondenza delle regioni 3′UTR, per stimare l'espressione genica. Sequenziando una porzione limitata dei trascritti, può ridurre il fabbisogno di sequenziamento rispetto al full-length RNA-Seq quando l'obiettivo è confrontare l'espressione dei geni; costi e risparmio effettivi dipendono dal protocollo e dal disegno sperimentale.</p>
+
+									<hr class="major" />
+
+									<h2>Riferimenti metodologici</h2>
+									<ul>
+										<li>Sholder G. et al. (2020). <a href="https://doi.org/10.1186/s12864-020-6478-3" target="_blank" rel="noopener noreferrer">3′Pool-seq: an optimized cost-efficient and scalable method of whole-transcriptome gene expression profiling</a>. <em>BMC Genomics</em>, 21, 64. Descrive un approccio di profilazione dell'espressione concentrato sulle estremità 3′ e ne valuta accuratezza e scalabilità.</li>
+										<li>Chen J. et al. (2021). <a href="https://doi.org/10.1111/jipb.13077" target="_blank" rel="noopener noreferrer">MP3RNA-seq: Massively parallel 3′ end RNA sequencing for high-throughput gene expression profiling and genotyping</a>. <em>Journal of Integrative Plant Biology</em>, 63(7), 1227–1239. Presenta un metodo 3′-end RNA-seq per profilazione dell'espressione su molti campioni.</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>Dal campione ai risultati</h2>
+									<figure>
+										<svg viewBox="0 0 1000 470" role="img" aria-labelledby="workflow-title workflow-description" style="width: 100%; height: auto;">
+											<title id="workflow-title">Schema dei risultati dell'analisi 3′ mRNA-Seq</title>
+											<desc id="workflow-description">Le reads 3′ passano dal controllo qualità e trimming, all'allineamento e alla quantificazione per gene. Il workflow produce una matrice di conteggi grezzi e report di qualità. La matrice può essere usata in un'analisi successiva di espressione differenziale e arricchimento dei pathway.</desc>
+											<defs>
+												<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+													<path d="M0,0 L10,5 L0,10 z" fill="#f56a6a" />
+												</marker>
+											</defs>
+											<g fill="#ffffff" stroke="#f56a6a" stroke-width="2">
+												<rect x="20" y="35" width="205" height="90" rx="8" />
+												<rect x="270" y="35" width="205" height="90" rx="8" />
+												<rect x="520" y="35" width="205" height="90" rx="8" />
+												<rect x="770" y="35" width="205" height="90" rx="8" />
+												<rect x="270" y="190" width="455" height="90" rx="8" fill="#fff4f4" />
+												<rect x="20" y="190" width="205" height="90" rx="8" fill="#f7f7f7" stroke="#9fa3a6" />
+												<rect x="150" y="340" width="310" height="90" rx="8" fill="#f7f7f7" stroke="#9fa3a6" />
+												<rect x="540" y="340" width="310" height="90" rx="8" fill="#f7f7f7" stroke="#9fa3a6" />
+											</g>
+											<g fill="none" stroke="#f56a6a" stroke-width="2.5" marker-end="url(#arrow)">
+												<path d="M225 80 H258" />
+												<path d="M475 80 H508" />
+												<path d="M725 80 H758" />
+												<path d="M872 125 V155 H500 V178" />
+												<path d="M372 125 V155 H122 V178" />
+												<path d="M360 280 V318 H305 V328" />
+												<path d="M460 385 H528" />
+											</g>
+											<g fill="#3d4449" font-family="Arial, sans-serif" text-anchor="middle">
+												<text x="122" y="72" font-size="17" font-weight="700">Reads 3′</text>
+												<text x="122" y="98" font-size="14">file FASTQ</text>
+												<text x="372" y="72" font-size="17" font-weight="700">Qualità e trimming</text>
+												<text x="372" y="98" font-size="14">controllo e pulizia</text>
+												<text x="622" y="72" font-size="17" font-weight="700">Allineamento</text>
+												<text x="622" y="98" font-size="14">e controllo contaminanti</text>
+												<text x="872" y="72" font-size="17" font-weight="700">Conteggi per gene</text>
+												<text x="872" y="98" font-size="14">quantificazione</text>
+												<text x="497" y="229" font-size="19" font-weight="700">Matrice di conteggi grezzi</text>
+												<text x="497" y="255" font-size="14">un valore per gene in ciascun campione</text>
+												<text x="122" y="226" font-size="16" font-weight="700">Report di qualità</text>
+												<text x="122" y="251" font-size="14">incluso report MultiQC</text>
+												<text x="305" y="378" font-size="16" font-weight="700">Analisi differenziale</text>
+												<text x="305" y="404" font-size="14">identificazione dei DEGs</text>
+												<text x="695" y="378" font-size="16" font-weight="700">Arricchimento pathway</text>
+												<text x="695" y="404" font-size="14">analisi a valle dei DEGs</text>
+											</g>
+											<g fill="#6b7074" font-family="Arial, sans-serif" font-size="13">
+												<text x="20" y="320">Output del workflow</text>
+												<text x="150" y="458">Analisi successive, non conteggi prodotti dalla pipeline</text>
+											</g>
+										</svg>
+									</figure>
+
+									<hr class="major" />
+
+									<h2>Output e ambito</h2>
+									<ul>
+										<li><strong>Output principale:</strong> matrice di conteggi grezzi per gene e campione, utilizzabile come input per l'analisi di espressione differenziale.</li>
+										<li><strong>Controllo qualità:</strong> report dei passaggi di analisi e report aggregato MultiQC.</li>
+										<li><strong>Analisi successive:</strong> i conteggi possono essere usati per identificare i geni differenzialmente espressi (DEGs) e, a partire da questi, valutare l'arricchimento dei pathway. Queste analisi richiedono un disegno sperimentale e annotazioni adeguate e non sono l'output diretto del workflow.</li>
+									</ul>
+									<p>La quantificazione è a livello di gene: questo workflow non è pensato per ricostruire trascritti, analizzare isoforme o studiare lo splicing. Un'eventuale analisi dell'uso alternativo dei siti di poliadenilazione richiederebbe un obiettivo e un'analisi dedicati.</p>
+
+									<hr class="major" />
+
+									<h2>Tecnologie</h2>
+									<ul class="skills">
+										<li>Nextflow DSL2 (versione 24.04.4 o successiva)</li>
+										<li>Docker e Google Cloud Batch</li>
+										<li>FastQC, BBDuk, STAR, HTSeq, Kraken2 e MultiQC</li>
+									</ul>
+
+									<hr class="major" />
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../../index.html">Homepage</a></li>
+										<li><a href="../../curriculumvitae.html">Curriculum Vitae</a></li>
+										<li>
+											<span class="opener">Projects</span>
+											<ul>
+												<li><a href="../index.html#rna">RNA</a></li>
+												<li><a href="../index.html#dna">DNA</a></li>
+												<li><a href="../index.html#single-cell">Single-cell</a></li>
+												<li><a href="../index.html#rstudio">RStudio</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Tools</span>
+											<ul>
+												<li><a href="../../tools/index.html#data-preparation">Preparazione dei dati</a></li>
+												<li><a href="../../tools/index.html#results-analysis">Analisi dei risultati</a></li>
+											</ul>
+										</li>
+										<li><a href="../../skills/index.html">Skills</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<h3>Contatti</h3>
+									<ul class="icons">
+										<li><a href="mailto:giuseppemartone@ik.me" class="icon solid fa-envelope" aria-label="Invia un'email" title="Email"><span class="label">Email</span></a></li>
+										<li><a href="tel:+393289231570" class="icon solid fa-phone" aria-label="Chiama" title="Telefono"><span class="label">Telefono</span></a></li>
+										<li><a href="https://www.linkedin.com/in/giuseppe-martone34" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer" aria-label="Profilo LinkedIn" title="LinkedIn"><span class="label">LinkedIn</span></a></li>
+									</ul>
+									<p>Italy, Campania</p>
+									<p class="copyright">&copy; Giuseppe Martone. All rights reserved.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
