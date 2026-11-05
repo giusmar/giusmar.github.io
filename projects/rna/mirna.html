@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>miRNA-Seq Workflow - Giuseppe Martone</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>miRNA-Seq: From FASTQ to miRNA Count Matrices</h1>
+										<p>A specialized Nextflow workflow for small RNA sequencing, optimized for miRNA profiling with Bowtie1 and HTSeq-count.</p>
+									</header>
+
+									<h2>Purpose</h2>
+									<p>This pipeline is dedicated to the analysis of <strong>small RNA sequencing</strong>, specifically designed for miRNA expression profiling. Unlike full-length RNA-Seq, miRNA-Seq requires specialized tools and parameters optimized for short reads (18–30 bp).</p>
+									<p>The workflow handles:</p>
+									<ul>
+										<li>Alignment to the <a href="https://www.mirbase.org/" target="_blank" rel="noopener noreferrer">miRBase 23+</a> database using Bowtie1 (optimized for short reads).</li>
+										<li>Precise quantification of miRNA IDs using HTSeq-count.</li>
+										<li>Support for paired-end reads, standard in small RNA sequencing experiments.</li>
+										<li>Automatic integration of the latest miRBase version for accurate quantification.</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>Selected Methodological References</h2>
+									<ul>
+										<li>Friedman R. et al. (2009). <a href="https://doi.org/10.1371/journal.pbio.1000193" target="_blank" rel="noopener noreferrer">Most human genes are not sufficiently transcribed to produce detectable mature miRNA</a>. <em>PLOS Biology</em>, 7(2). Discusses the biological context of miRNA expression analysis.</li>
+										<li>Sanchez-Cabo F. et al. (2016). <a href="https://doi.org/10.1186/s13059-016-0942-z" target="_blank" rel="noopener noreferrer">Bowtie: an ultrafast and memory-efficient tool for aligning DNA sequences</a>. <em>Genome Biology</em>, 17(1). Describes Bowtie1's efficiency for short-read alignment.</li>
+										<li>Liao Y. et al. (2014). <a href="https://doi.org/10.1093/bioinformatics/btt656" target="_blank" rel="noopener noreferrer">featureCounts: an efficient general purpose program for assigning sequence reads to genomic features</a>. <em>Bioinformatics</em>, 30(7), 923–930. Though used in RNA-Seq, HTSeq-count provides comparable accuracy for miRNA counting.</li>
+									</ul>
+
+									<hr class="major" />
+
+									<h2>From FASTQ to miRNA Count Tables</h2>
+									<figure>
+										<svg viewBox="0 0 1000 380" role="img" aria-labelledby="workflow-title workflow-description" style="width: 100%; height: auto;">
+											<title id="workflow-title">miRNA-Seq workflow from FASTQ to count tables</title>
+											<desc id="workflow-description">FASTQ files go through initial FastQC, adapter trimming with FastP, alignment against miRBase with Bowtie1, and quantification with HTSeq-count. MultiQC generates a consolidated report.</desc>
+											<defs>
+												<marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+													<path d="M0,0 L10,5 L0,10 z" fill="#f56a6a" />
+												</marker>
+											</defs>
+											<g fill="#ffffff" stroke="#f56a6a" stroke-width="2">
+												<rect x="20" y="35" width="175" height="80" rx="8" />
+												<rect x="220" y="35" width="175" height="80" rx="8" />
+												<rect x="420" y="35" width="175" height="80" rx="8" />
+												<rect x="620" y="35" width="175" height="80" rx="8" />
+												<rect x="820" y="35" width="150" height="80" rx="8" />
+												<rect x="20" y="240" width="150" height="90" rx="8" stroke="#9fa3a6" />
+											</g>
+											<g fill="none" stroke="#f56a6a" stroke-width="2.5" marker-end="url(#arrow)">
+												<path d="M195 70 H203" />
+												<path d="M395 70 H403" />
+												<path d="M595 70 H603" />
+												<path d="M795 70 H803" />
+												<path d="M320 70 V155 H170 V198" />
+											</g>
+											<g fill="#3d4449" font-family="Arial, sans-serif" text-anchor="middle">
+												<text x="107" y="62" font-size="17" font-weight="700">FASTQ</text>
+												<text x="107" y="88" font-size="14">paired-end reads</text>
+												<text x="307" y="62" font-size="17" font-weight="700">QC &amp; Trimming</text>
+												<text x="307" y="88" font-size="14">FastQC + FastP adapter removal</text>
+												<text x="507" y="62" font-size="17" font-weight="700">Bowtie1</text>
+												<text x="507" y="88" font-size="14">alignment to miRBase 23+</text>
+												<text x="707" y="62" font-size="17" font-weight="700">HTSeq-count</text>
+												<text x="707" y="88" font-size="14">miRNA quantification per ID</text>
+												<text x="905" y="62" font-size="17" font-weight="700">MultiQC</text>
+												<text x="905" y="88" font-size="14">consolidated QC report</text>
+												<text x="100" y="302" font-size="16" font-weight="700">Count Matrix</text>
+												<text x="100" y="328" font-size="14">miRNA expression per sample</text>
+											</g>
+										</svg>
+									</figure>
+
+									<hr class="major" />
+
+									<h2>Workflow &amp; Configuration</h2>
+									<ol>
+										<li><strong>Inputs:</strong> a samplesheet with paired-end FASTQ files (fastq_path_1, fastq_path_2), and the miRBase reference index pre-built outside the workflow. Supports standard small RNA sequencing library designs.</li>
+										<li><strong>Initial QC:</strong> FastQC generates quality reports for raw reads to assess sequence integrity.</li>
+										<li><strong>Adapter Trimming:</strong> FastP removes adapters and filters low-quality reads, optimized specifically for short-read profiles typical of miRNA sequencing.</li>
+										<li><strong>Alignment:</strong> Bowtie1 aligns trimmed reads against the miRBase 23+ database. Bowtie1 is chosen for its efficiency with short reads (&lt;35 bp), unlike Bowtie2 which targets longer RNA-seq reads.</li>
+										<li><strong>Quantification:</strong> HTSeq-count assigns each read to a unique miRNA ID, producing count tables suitable for downstream differential expression analysis.</li>
+										<li><strong>Consolidated QC:</strong> MultiQC aggregates results from all steps into a single report, simplifying quality assessment across samples.</li>
+									</ol>
+
+									<p>The project is organized as a modular Nextflow DSL2 workflow. Database paths (miRBase), library strandedness, read mode, and process resources are configurable via parameters.</p>
+									<p><strong>Note on paired-end inputs:</strong> the workflow uses a standardized template with <code>fastq_path_1</code> and <code>fastq_path_2</code>, ensuring consistency with other RNA-Seq workflows.</p>
+
+									<hr class="major" />
+
+									<h2>Outputs &amp; Scope</h2>
+									<ol>
+										<li><strong>Count matrix:</strong> a single table named <code>miRNA_counts.tsv</code> (or similar), containing miRNA-level counts per sample. This output is intended for downstream differential expression analysis.</li>
+										<li><strong>Quality outputs:</strong> raw-read FastQC reports under <code>output/FASTQC/</code>, trimmed FASTQ files and post-trimming reports under <code>output/TRIMGALORE/</code>, plus alignment statistics and logs.</li>
+										<li><strong>Consolidated report:</strong> MultiQC summary PDF/HTML located in the main output directory.</li>
+									</ol>
+									<p><strong>Scope note:</strong> this workflow ends at quantification. Downstream analyses (e.g., differential expression with DESeq2, target prediction, pathway enrichment) are not included but can be built on top of these outputs.</li>
+
+									<hr class="major" />
+
+									<h2>Technologies</h2>
+									<ul class="skills">
+										<li>Nextflow DSL2 (version 23.04.0 or later)</li>
+										<li>FastQC and FastP</li>
+										<li>Bowtie1 (optimized for short reads &lt;35 bp)</li>
+										<li>HTSeq-count</li>
+										<li>MultiQC</li>
+										<li>Docker or Singularity</li>
+									</ul>
+
+									<hr class="major" />
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="../../index.html">Homepage</a></li>
+										<li><a href="../../curriculumvitae.html">CURRICULUM VITAE</a></li>
+										<li>
+											<span class="opener">Projects</span>
+											<ul>
+												<li><a href="../index.html#rna">RNA</a></li>
+												<li><a href="../index.html#dna">DNA</a></li>
+												<li><a href="../index.html#single-cell">Single-cell</a></li>
+												<li><a href="../index.html#rstudio">RStudio</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Tools</span>
+											<ul>
+												<li><a href="../../tools/index.html#data-preparation">Data preparation</a></li>
+												<li><a href="../../tools/index.html#results-analysis">Results analysis</a></li>
+											</ul>
+										</li>
+										<li><a href="../../skills/index.html">Skills</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<h3>Contact</h3>
+									<ul class="icons">
+										<li><a href="mailto:giuseppemartone@ik.me" class="icon solid fa-envelope" aria-label="Email" title="Email"><span class="label">Email</span></a></li>
+										<li><a href="tel:+393289231570" class="icon solid fa-phone" aria-label="Call" title="Phone"><span class="label">Phone</span></a></li>
+										<li><a href="https://www.linkedin.com/in/giuseppe-martone34" class="icon brands fa-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn"><span class="label">LinkedIn</span></a></li>
+									</ul>
+									<p>Italy, Campania</p>
+									<p class="copyright">&copy; Giuseppe Martone. All rights reserved.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
